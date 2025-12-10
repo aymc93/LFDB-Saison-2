@@ -1,0 +1,217 @@
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+:root {
+    --bg-dark: #36434A;
+    --bg-pink: #FF4777;
+    --text-beige: #E5D4C8;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-dark);
+    overflow-x: hidden;
+}
+
+/* =========================================
+   2. NAV BARRE (BULLE FLOTTANTE)
+   ========================================= */
+.bubble-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(229, 212, 200, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 10px 30px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+.bubble-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+.bubble-nav a {
+    text-decoration: none;
+    color: var(--bg-dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.bubble-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: var(--bg-pink);
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.bubble-nav a:hover::after,
+.bubble-nav a.active::after {
+    width: 100%;
+}
+
+/* =========================================
+   3. SECTION DU HAUT (TOP SECTION)
+   ========================================= */
+.top-section {
+    height: 100vh;
+    width: 100%;
+    background-color: var(--bg-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-beige);
+    position: relative;
+    z-index: 1;
+}
+
+.content-wrapper {
+    text-align: center;
+}
+
+/* =========================================
+   4. ANIMATION TITRE "SPLIT" (LFDB | SAISON 2)
+   ========================================= */
+
+.split-anim-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 0;
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--bg-pink);
+    font-weight: bold;
+    position: relative;
+}
+
+.central-bar {
+    display: block;
+    width: 4px;
+    height: 1.2em;
+    background-color: var(--text-beige);
+    transform: scaleY(0);
+    transform-origin: center;
+    animation: growBar 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+@keyframes growBar {
+    to { transform: scaleY(1); }
+}
+
+.txt-mask {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    padding: 5px 0;
+}
+
+.txt-left, .txt-right {
+    display: block;
+    opacity: 0;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-delay: 0.9s;
+    animation-fill-mode: forwards;
+}
+
+.txt-left {
+    transform: translateX(110%);
+    animation-name: slideOutLeft;
+}
+
+.txt-right {
+    transform: translateX(-110%);
+    animation-name: slideOutRight;
+}
+
+@keyframes slideOutLeft {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideOutRight {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.subtitle-anim {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease-out 1.6s forwards;
+    color: var(--text-beige);
+    font-size: 1.2rem;
+    margin-top: 30px;
+    text-align: center;
+    display: block;
+}
+
+@keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   5. SECTION DU BAS (TRIANGLE ROSE)
+   ========================================= */
+.bottom-section {
+    position: relative;
+    background-color: var(--bg-pink);
+    color: var(--text-beige);
+    min-height: 80vh;
+    margin-top: -150px;
+    z-index: 2;
+    clip-path: polygon(0 150px, 50% 0, 100% 150px, 100% 100%, 0 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.triangle-content {
+    text-align: center;
+    max-width: 600px;
+}
+
+.triangle-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* =========================================
+   6. ÉLÉMENTS UI (BOUTONS)
+   ========================================= */
+button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    background: var(--bg-dark);
+    color: var(--text-beige);
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .split-anim-title { font-size: 2.5rem; }
+    .bottom-section { margin-top: -100px; clip-path: polygon(0 100px, 50% 0, 100% 100px, 100% 100%, 0 100%); }
+}
