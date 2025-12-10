@@ -3,7 +3,7 @@
    ========================================= */
 :root {
     --bg-dark: #36434A;
-    --bg-pink: #FF4777;
+    --bg-pink: #f8874f;
     --text-beige: #E5D4C8;
     --card-bg: rgba(54, 67, 74, 0.95);
 }
@@ -156,15 +156,12 @@ body, html {
     color: var(--text-beige);
     opacity: 0;
     text-align: center;
-    margin-top: 150px; /* Plus d'espace avec le titre principal */
-    font-size: 2.5rem; /* Beaucoup plus grand (ajuste selon tes goûts) */
-    font-weight: 900; /* Ultra gras, comme de la pierre */
-    text-transform: uppercase; /* Tout en majuscules */
-    letter-spacing: 20px; /* L'espacement énorme entre les lettres */
-    margin-right: -20px; /* ASTUCE : Corrige le décentrage causé par le letter-spacing */
-    /* ------------------------------------ */
-
-    /* L'animation reste la même */
+    margin-top: 150px;
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 20px;
+    margin-right: -20px;
     animation: fadeUp 1s ease 1.5s forwards;
 }
 
@@ -173,7 +170,7 @@ body, html {
 }
 
 /* =========================================
-   5. SECTION DU BAS (TRIANGLE ROSE)
+   5. SECTION DU BAS (TRIANGLE)
    ========================================= */
 .bottom-section {
     position: relative;
@@ -191,7 +188,7 @@ body, html {
 
 .section-title {
     font-size: 3rem;
-    color: #fff; /* Titre en blanc sur le rose */
+    color: #fff;
     margin-bottom: 50px;
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -206,12 +203,11 @@ body, html {
 
 .bento-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin-bottom: 40px;
 }
 
-/* Style des cartes */
 .rule-card {
     background: var(--card-bg);
     color: var(--text-beige);
@@ -226,19 +222,16 @@ body, html {
     justify-content: flex-start;
 }
 
-/* Hover effect : la carte se soulève */
 .rule-card:hover {
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 20px 40px rgba(0,0,0,0.25);
     border-color: var(--bg-pink);
 }
 
-/* Gestion des tailles de cartes */
-.large { grid-column: span 3; } /* Prend toute la largeur */
-.medium { grid-column: span 2; } /* Prend 2 colonnes */
-.small { grid-column: span 1; } /* Prend 1 colonne */
+.large { grid-column: span 3; }
+.medium { grid-column: span 2; }
+.small { grid-column: span 1; }
 
-/* Contenu des cartes */
 .icon { font-size: 2.5rem; margin-bottom: 15px; }
 .rule-card h3 {
     margin: 0 0 10px 0;
@@ -256,14 +249,13 @@ body, html {
     padding-left: 20px;
     position: relative;
 }
-/* Puce personnalisée */
+
 .rule-card ul li::before {
     content: '•'; color: var(--bg-pink);
     position: absolute; left: 0; font-size: 1.5rem; line-height: 1rem;
 }
 .sub-note { font-size: 0.85rem !important; opacity: 0.6 !important; margin-top: 10px !important; font-style: italic; }
 
-/* Responsive Mobile */
 @media (max-width: 768px) {
     .bento-grid { grid-template-columns: 1fr; }
     .large, .medium, .small { grid-column: span 1; }
@@ -277,10 +269,21 @@ body, html {
     }
 }
 
-/* Bouton Join */
-.join-box { text-align: center; margin-top: 30px; }
-.join-box p { color: #fff; font-size: 1.2rem; font-weight: bold; margin-bottom: 15px; }
-.join-box button {
+.join-box {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.join-box p {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.join-box .btn-join {
+    display: inline-block;
+    text-decoration: none;
     background: var(--bg-dark);
     color: var(--bg-pink);
     font-weight: bold;
@@ -292,7 +295,11 @@ body, html {
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     transition: 0.3s;
 }
-.join-box button:hover { transform: scale(1.05); background: #fff; }
+
+.join-box .btn-join:hover {
+    transform: scale(1.05);
+    background: #fff;
+}
 
 /* =========================================
    6. ÉLÉMENTS UI (BOUTONS)
@@ -323,26 +330,21 @@ button:hover {
    ========================================= */
 .map-section {
     position: relative;
-    background-color: var(--bg-dark); /* Retour au bleu nuit */
+    background-color: var(--bg-dark);
     color: var(--text-beige);
-    min-height: 80vh; /* Hauteur de la section */
-
-    /* LA MAGIE DU TRIANGLE */
+    min-height: 80vh;
     padding-top: 100px;
-    margin-top: -150px; /* On fait remonter le bloc sur le rose */
-    z-index: 3; /* Passe AU-DESSUS de la section rose (qui est z-index 2) */
+    margin-top: -150px;
+    z-index: 3;
     clip-path: polygon(0 150px, 50% 0, 100% 150px, 100% 100%, 0 100%);
-
-    /* Mise en page */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 150px; /* Important pour que le texte ne soit pas coupé par la pointe */
+    padding-top: 150px;
     padding-bottom: 50px;
 }
 
-/* Style juste pour l'exemple de la carte */
 .map-placeholder {
     width: 80vw;
     max-width: 800px;
@@ -358,14 +360,12 @@ button:hover {
     color: var(--bg-pink);
 }
 
-/* Adaptation Mobile */
 @media (max-width: 768px) {
     .map-section {
         margin-top: -100px;
         clip-path: polygon(0 100px, 50% 0, 100% 100px, 100% 100%, 0 100%);
         padding-top: 120px;
     }
-
     .map-placeholder {
         height: 250px;
         width: 90vw;
@@ -380,11 +380,11 @@ button:hover {
     background-color: var(--bg-dark);
     color: var(--text-beige);
     min-height: 80vh;
-    margin-top: -150px; /* Chevauchement sur le rose */
+    margin-top: -150px;
     z-index: 3;
     clip-path: polygon(0 150px, 50% 0, 100% 150px, 100% 100%, 0 100%);
 
-    padding: 180px 20px 250px 20px; /* Gros padding bas pour la section suivante */
+    padding: 180px 20px 250px 20px;
     display: flex;
     justify-content: center;
 }
@@ -421,7 +421,7 @@ button:hover {
     line-height: 1.2;
 }
 
-.news-content h3 { margin: 5px 0 10px 0; font-size: 1.3rem; color: white; }
+.news-content h3 { margin: 5px 0 10px 0; font-size: 1.3rem; color: var(--text-beige); }
 .news-content p { margin: 0; font-size: 0.95rem; opacity: 0.8; }
 
 .news-tag {
@@ -433,20 +433,20 @@ button:hover {
     margin-bottom: 5px;
     display: inline-block;
 }
-.news-tag.event { background: #9b59b6; color: white; }
-.news-tag.update { background: #3498db; color: white; }
-.news-tag.warning { background: #e67e22; color: white; }
+.news-tag.event { background: #9b59b6; color: var(--text-beige); }
+.news-tag.update { background: #3498db; color: var(--text-beige); }
+.news-tag.warning { background: #e67e22; color: var(--text-beige); }
 
 
 /* =========================================
-   8. SECTION CLANS (ROSE - Z-INDEX 4)
+   8. SECTION CLANS (Z-INDEX 4)
    ========================================= */
 .clans-section {
     position: relative;
     background-color: var(--bg-pink);
     color: var(--bg-dark);
     min-height: 80vh;
-    margin-top: -150px; /* Chevauchement sur le bleu */
+    margin-top: -150px;
     z-index: 4;
     clip-path: polygon(0 150px, 50% 0, 100% 150px, 100% 100%, 0 100%);
 
@@ -457,7 +457,7 @@ button:hover {
 
 .section-subtitle {
     text-align: center;
-    color: white;
+    color: var(--text-beige);
     margin-bottom: 40px;
     font-size: 1.1rem;
     font-style: italic;
@@ -472,7 +472,7 @@ button:hover {
 }
 
 .clan-card {
-    background: var(--card-bg); /* Fond sombre */
+    background: var(--card-bg);
     color: var(--text-beige);
     border-radius: 20px;
     overflow: hidden;
@@ -513,15 +513,14 @@ button:hover {
 .role.leader { color: #f1c40f; font-weight: bold; opacity: 1; }
 .name { font-weight: 600; }
 
-/* Style pour la carte vide */
 .clan-card.empty { border: 2px dashed rgba(255,255,255,0.3); background: transparent; color: var(--bg-dark); }
 .clan-card.empty .clan-header { background: transparent; border: none; }
-.clan-card.empty h3 { color: white; }
+.clan-card.empty h3 { color: var(--text-beige); }
 .clan-card.empty .clan-body { text-align: center; }
 
 .small-btn {
     background: var(--bg-dark);
-    color: white;
+    color: var(--bg-pink);
     border: none;
     padding: 8px 20px;
     border-radius: 20px;
@@ -541,93 +540,123 @@ button:hover {
 /* =========================================
    10. FOOTER (ROSE - Z-INDEX 6)
    ========================================= */
+/* --- LE CONTENEUR EXTERNE (LA BARRE DE FOND) --- */
 .site-footer {
+    width: 100%;
+    background-color: var(--bg-pink); /* La couleur traverse tout l'écran */
+    color: var(--bg-dark);
+    padding: 20px 0; /* Un peu d'air en haut et en bas */
+    margin-top: 50px; /* Espace pour ne pas coller au contenu précédent */
+
+    /* On supprime les effets de forme bizarre */
     position: relative;
-    background-color: var(--bg-pink);
-    color: var(--bg-dark); /* Texte foncé sur fond rose */
-    margin-top: -100px; /* Chevauchement sur la carte */
-    z-index: 6; /* Tout au dessus */
-    padding: 50px 20px 40px 20px; /* Padding haut pour compenser la pointe */
-    text-align: center;
-    font-size: 0.9rem;
+    z-index: 10;
 }
 
-.footer-content {
-    max-width: 600px;
-    margin: 0 auto;
+/* --- LE CONTENEUR INTERNE (LE CONTENU) --- */
+.footer-container {
+    max-width: 1200px; /* Largeur max standard */
+    margin: 0 auto;    /* Centré horizontalement */
+    padding: 0 20px;   /* Marges de sécurité sur les côtés */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    gap: 20px;         /* Espace entre la barre du haut et le copyright */
 }
 
+/* --- LIGNE DU HAUT (Logo - Liens - Réseaux) --- */
+.footer-nav-row {
+    display: flex;
+    justify-content: space-between; /* LA CLÉ : Gauche - Milieu - Droite */
+    align-items: center;            /* Tout le monde aligné verticalement */
+    width: 100%;
+    padding-bottom: 20px;           /* Espace avant le trait de séparation */
+    border-bottom: 1px solid rgba(0,0,0,0.1); /* Petit trait fin de séparation */
+}
+
+/* 1. Logo */
 .footer-logo {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 900;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-    color: white; /* Le logo en blanc ressort bien */
+    letter-spacing: 1px;
+    color: var(--text-beige);
+    flex: 1; /* Prend de la place pour pousser les autres */
 }
 
+/* 2. Liens (Style Navbar) */
 .footer-links {
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    font-weight: 600;
+    gap: 30px; /* Espace aéré entre les liens */
+    flex: 2;
+    justify-content: center; /* Bien centré au milieu */
 }
 
 .footer-links a {
     color: var(--bg-dark);
     text-decoration: none;
-    transition: opacity 0.3s;
+    font-weight: 600;
+    text-transform: uppercase; /* Rend les liens plus "pro" */
+    font-size: 0.9rem;
+    position: relative;
 }
 
-.footer-links a:hover {
-    opacity: 0.6;
-    text-decoration: underline;
+/* Petit effet souligné moderne au survol */
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--text-beige);
+    transition: width 0.3s;
 }
 
-.separator { opacity: 0.3; }
-
-.copyright {
-    opacity: 0.8;
-    line-height: 1.6;
+.footer-links a:hover::after {
+    width: 100%;
 }
 
-.credits {
-    font-size: 0.8rem;
-    opacity: 0.6;
-    font-style: italic;
-}
-
-.social-icons {
-    margin-top: 10px;
+/* 3. Réseaux */
+.social-icons-img {
     display: flex;
-    gap: 20px;
-    font-size: 1.5rem;
+    gap: 15px;
+    flex: 1;
+    justify-content: flex-end; /* Colle à droite */
 }
 
-.social-icons a {
-    text-decoration: none;
-    transition: transform 0.3s ease;
+.social-icons-img a img {
+    width: 30px; /* Taille icone propre */
+    transition: transform 0.2s;
 }
 
-.social-icons a:hover {
-    transform: scale(1.2) rotate(5deg);
+.social-icons-img a:hover img {
+    transform: translateY(-3px); /* Petit saut au survol */
 }
 
-/* Adaptation Mobile */
+/* --- COPYRIGHT (En bas) --- */
+.footer-copyright {
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* --- RESPONSIVE (Mobile) --- */
 @media (max-width: 768px) {
-    .site-footer {
-        margin-top: -80px;
-        clip-path: polygon(0 60px, 50% 0, 100% 60px, 100% 100%, 0 100%);
-        padding-top: 100px;
+    .footer-nav-row {
+        flex-direction: column; /* On empile tout */
+        gap: 20px;
+        text-align: center;
+    }
+
+    .footer-logo {
+        margin-bottom: 5px;
     }
 
     .footer-links {
-        flex-direction: column;
-        gap: 5px;
+        flex-direction: column; /* Liens les uns sous les autres sur mobile */
+        gap: 10px;
     }
 
-    .separator { display: none; }
+    .social-icons-img {
+        justify-content: center; /* Centre les icônes */
+    }
 }
