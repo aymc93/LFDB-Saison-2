@@ -3,44 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Moderne Triangle</title>
+    <title>LFDB | Saison 2</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav class="bubble-nav">
     <ul>
-        <li><a href="index.html" class="active">Accueil</a></li>
-        <li><a href="projets.html">Projets</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#" class="active">Accueil</a></li>
+        <li><a href="#rules">Règles</a></li>
+        <li><a href="#map">Carte</a></li>
     </ul>
 </nav>
 
 <section class="top-section">
-    <div class="content-wrapper" id="parallax-text">
+    <div class="content-wrapper">
         <h1 class="split-anim-title">
-            <span class="txt-mask">
-                <span class="txt-left">LFDB</span>
-            </span>
-
+            <span class="txt-mask"><span class="txt-left">LFDB</span></span>
             <span class="central-bar"></span>
-
-            <span class="txt-mask">
-                <span class="txt-right">Saison 2</span>
-            </span>
+            <span class="txt-mask"><span class="txt-right">Saison 2</span></span>
         </h1>
-
-        <p class="subtitle-anim">L'aventure continue</p>
+        <p class="subtitle-anim">Survivre &nbsp&nbsp&nbsp Bâtir &nbsp&nbsp&nbsp Dominer</p>
     </div>
 </section>
 
-<section class="bottom-section">
-    <div class="triangle-content">
-        <h2>Découvre les nouveauté</h2>
-        <p>et rejoin l'aventure !</p>
-        <button onclick="alert('Action !')">Découvrir</button>
+<section class="bottom-section" id="rules">
+    <div class="rules-container">
+        <h2 class="section-title">Codex du Serveur</h2>
+
+        <div class="bento-grid">
+            <div class="rule-card large">
+                <div class="icon">💀</div>
+                <h3>Hardcore Permanent</h3>
+                <p>La mort est <strong>définitive</strong>. Votre aventure s'arrête net, sauf miracle du Samedi.</p>
+            </div>
+
+            <div class="rule-card medium">
+                <div class="icon">✨</div>
+                <h3>Le Rituel du Samedi</h3>
+                <ul>
+                    <li>⏰ <strong>De 16h00 à 16h30</strong> chaque Samedi</li>
+                    <li>Construire un beacon et le garder allumé pendant <strong>10 minutes</strong></li>
+                    <li>Max <strong>3 joueurs</strong> sauvés/semaine</li>
+                    <li>⚠️ Si le beacon n'est plus allumé, le rituelle est corrompu.</li>
+                </ul>
+            </div>
+
+            <div class="rule-card small">
+                <div class="icon">⚔️</div>
+                <h3>Diplomatie</h3>
+                <p><strong>Déclaration publique obligatoire </strong>signée par les chefs.</p>
+            </div>
+
+            <div class="rule-card medium">
+                <div class="icon">🏰</div> <h3>Clans & Territoire</h3>
+                <p>Min: <strong>2 membres</strong>, zone de <strong>100x100</strong> délimité + une <strong>capitale</strong> et un <strong>drapeau</strong>.</p>
+                <p><strong>Chaque</strong> membre du clan doit avoir une habitation sur le territoire.</p>
+                <p class="sub-note">Sans maison, l'habitant est expulsé en fin de semaine.</p>
+            </div>
+
+            <div class="rule-card small">
+                <div class="icon">💰</div>
+                <h3>Commerce</h3>
+                <p>Marchés & routes libres.</p>
+                <p class="sub-note">Les clans peuvent établir des routes commerciales, organiser des marchés communs et conclure des contrats commerciaux.</p>
+            </div>
+        </div>
+
+        <div class="join-box">
+            <p>Prêt à tenter l'aventure ?</p>
+            <button>Rejoindre le Discord</button>
+        </div>
     </div>
 </section>
+
+<nav class="bubble-nav">
+    <ul>
+        <li><a href="#" class="active">Accueil</a></li>
+        <li><a href="#rules">Règles</a></li>
+        <li><a href="#news">Actu</a></li>
+        <li><a href="#clans">Clans</a></li>
+        <li><a href="#map">Carte</a></li>
+    </ul>
+</nav>
+
+<section class="news-section" id="news">
+    <div class="content-wrapper">
+        <h2 class="section-title" style="color: var(--bg-pink);">Dernières Nouvelles</h2>
+
+        <div class="news-grid">
+            <article class="news-card">
+                <div class="news-date">29 Fév</div>
+                <div class="news-content">
+                    <span class="news-tag event">Événement</span>
+                    <h3>Ouverture de la Saison 2</h3>
+                    <p>Le serveur ouvre ses portes ce vendredi ! Préparez vos équipes.</p>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-date">02 Mar</div>
+                <div class="news-content">
+                    <span class="news-tag update">Mise à jour</span>
+                    <h3>Patch Note 2.0</h3>
+                    <p>Ajout des nouveaux biomes et modification du système de beacon.</p>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-date">01 Mar</div>
+                <div class="news-content">
+                    <span class="news-tag warning">Rappel</span>
+                    <h3>Inscriptions Clans</h3>
+                    <p>N'oubliez pas d'enregistrer votre nom de clan avant le lancement.</p>
+                </div>
+            </article>
+
+
+            <article class="news-card">
+                <div class="news-date">25 Déc</div>
+                <div class="news-content">
+                    <span class="news-tag event">Événement</span>
+                    <h3>C'est noel yipieeee</h3>
+                    <p>il se passe RIEN</p>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-date">01 Jan</div>
+                <div class="news-content">
+                    <span class="news-tag update">Mise à jour</span>
+                    <h3>Patch Note 0.01</h3>
+                    <p>rien a dire</p>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-date">01 <br>Fév</div>
+                <div class="news-content">
+                    <span class="news-tag warning">Rappel</span>
+                    <h3>Bon</h3>
+                    <p>J'espere on a avancé</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="clans-section" id="clans">
+    <div class="content-wrapper">
+        <h2 class="section-title">Les Clans</h2>
+        <p class="section-subtitle">Ils écriront l'histoire de cette saison.</p>
+
+        <div class="clans-grid">
+
+            <div class="clan-card">
+                <div class="clan-header">
+                    <div class="clan-icon">🇵🇹</div>
+                    <h3>Les PNH</h3>
+                </div>
+                <div class="clan-body">
+                    <div class="member-role">
+                        <span class="role leader">👑 Chef</span>
+                        <span class="name">Aymeric</span>
+                    </div>
+                    <div class="member-list">
+                        <div class="member-role">
+                            <span class="role">🛡️ Diplomate</span>
+                            <span class="name">Test 1</span>
+                        </div>
+                        <div class="member-role">
+                            <span class="role">👤 Membre</span>
+                            <span class="name">Test 2</span>
+                        </div>
+                        <div class="member-role">
+                            <span class="role">👤 Membre</span>
+                            <span class="name">Test 3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clan-card">
+                <div class="clan-header">
+                    <div class="clan-icon">🇨🇵</div>
+                    <h3>Les Eagles (petite ref a quentin)</h3>
+                </div>
+                <div class="clan-body">
+                    <div class="member-role">
+                        <span class="role leader">👑 Chef</span>
+                        <span class="name">Akram</span>
+                    </div>
+                    <div class="member-list">
+                        <div class="member-role">
+                            <span class="role">🛡️ Diplomate</span>
+                            <span class="name">Test 4</span>
+                        </div>
+                        <div class="member-role">
+                            <span class="role">👤 Membre</span>
+                            <span class="name">Test 5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clan-card empty">
+                <div class="clan-header">
+                    <div class="clan-icon">➕</div>
+                    <h3>Place Libre</h3>
+                </div>
+                <div class="clan-body">
+                    <p>Votre clan ici ?</p>
+                    <button class="small-btn">Postuler</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="map-section" id="map">
+    <div class="content-wrapper">
+        <h2 class="section-title" style="color: var(--bg-pink);">La Carte du Monde</h2>
+        <p>Explorez les territoires et repérez les zones de danger.</p>
+
+        <div class="map-placeholder">
+            <span>Carte en cours de chargement...</span>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-content">
+
+        <div class="footer-logo">LFDB <span style="opacity:0.5;">S2</span></div>
+
+        <div class="footer-links">
+            <a href="#">Mentions Légales</a>
+            <span class="separator">•</span>
+            <a href="#">Règlement Discord</a>
+            <span class="separator">•</span>
+            <a href="#">Contact</a>
+        </div>
+
+        <p class="copyright">
+            &copy; 2025 Aymeric's World. Tous droits réservés.<br>
+            <span class="credits">Designé avec passion.</span>
+        </p>
+
+        <div class="social-icons">
+            <a href="#" title="Discord">💬</a>
+            <a href="#" title="Twitter">🐦</a>
+            <a href="#" title="Youtube">▶️</a>
+        </div>
+    </div>
+</footer>
 
 <script src="script.js"></script>
 </body>
