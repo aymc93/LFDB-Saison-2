@@ -75,17 +75,34 @@ body, html {
     height: 100vh;
     width: 100%;
     background-color: var(--bg-dark);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--text-beige);
-    position: relative;
-    z-index: 1;
+}
+
+.dim-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .content-wrapper {
+    position: relative;
+    z-index: 1;
     text-align: center;
 }
+
 
 /* =========================================
    4. ANIMATION TITRE "SPLIT" (LFDB | SAISON 2)
@@ -178,8 +195,8 @@ body, html {
     background-color: var(--bg-pink);
     color: var(--bg-dark);
     min-height: 100vh;
-    margin-top: -151px;
-    z-index: 2;
+    margin-top: calc(100vh - 150px); 
+    z-index: 10; 
     clip-path: polygon(0 150px, 50% 0, 100% 150px, 100% 100%, 0 100%);
     padding: 180px 20px 250px 20px;
     display: flex;
@@ -264,13 +281,9 @@ body, html {
     .large, .medium, .small { grid-column: span 1; }
     .split-anim-title { font-size: 2.5rem; }
     
-    /* CORRECTION DU BUG ORANGE ICI */
     .bottom-section { 
-        /* On aligne la découpe (100px) avec la margin (-100px) */
-        clip-path: polygon(0 100px, 50% 0, 100% 100px, 100% 100%, 0 100%); 
-        margin-top: -100px; 
-        
-        /* Ajustement du padding pour que le texte ne soit pas trop bas sur mobile */
+        margin-top: calc(100vh - 100px); 
+        clip-path: polygon(0 100px, 50% 0, 100% 100px, 100% 100%, 0 100%);
         padding-top: 130px; 
     }
 
@@ -394,9 +407,8 @@ button:hover {
     color: var(--text-beige);
     min-height: 80vh;
     margin-top: -150px;
-    z-index: 3;
+    z-index: 11;
     clip-path: polygon(0 150px, 50% 0, 100% 150px, 100% 100%, 0 100%);
-
     padding: 180px 20px 250px 20px;
     display: flex;
     justify-content: center;
@@ -460,7 +472,7 @@ button:hover {
     color: var(--bg-dark);
     min-height: 80vh;
     margin-top: -150px;
-    z-index: 4;
+    z-index: 11;
     clip-path: polygon(0 150px, 50% 0, 100% 150px, 100% 100%, 0 100%);
 
     padding: 180px 20px 250px 20px;
@@ -545,74 +557,69 @@ button:hover {
 /* =========================================
    9. MISE À JOUR SECTION MAP (Z-INDEX 5)
    ========================================= */
-/* Important : Modifie ton ancienne .map-section pour augmenter le z-index */
+
 .map-section {
-    z-index: 5 !important;
+    z-index: 11 !important;
 }
 
 /* =========================================
    10. FOOTER (ROSE - Z-INDEX 6)
    ========================================= */
-/* --- LE CONTENEUR EXTERNE (LA BARRE DE FOND) --- */
+
 .site-footer {
     width: 100%;
-    background-color: var(--bg-pink); /* La couleur traverse tout l'écran */
+    background-color: var(--bg-pink);
     color: var(--bg-dark);
-    padding: 20px 0; /* Un peu d'air en haut et en bas */
-    margin-top: 50px; /* Espace pour ne pas coller au contenu précédent */
-
-    /* On supprime les effets de forme bizarre */
+    padding: 20px 0;
+    margin-top: 50px;
     position: relative;
     z-index: 10;
 }
 
-/* --- LE CONTENEUR INTERNE (LE CONTENU) --- */
 .footer-container {
-    max-width: 1200px; /* Largeur max standard */
-    margin: 0 auto;    /* Centré horizontalement */
-    padding: 0 20px;   /* Marges de sécurité sur les côtés */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;         /* Espace entre la barre du haut et le copyright */
+    gap: 20px;
 }
 
-/* --- LIGNE DU HAUT (Logo - Liens - Réseaux) --- */
 .footer-nav-row {
     display: flex;
-    justify-content: space-between; /* LA CLÉ : Gauche - Milieu - Droite */
-    align-items: center;            /* Tout le monde aligné verticalement */
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    padding-bottom: 20px;           /* Espace avant le trait de séparation */
-    border-bottom: 1px solid rgba(0,0,0,0.1); /* Petit trait fin de séparation */
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-/* 1. Logo */
+
 .footer-logo {
     font-size: 1.5rem;
     font-weight: 900;
     letter-spacing: 1px;
     color: var(--text-beige);
-    flex: 1; /* Prend de la place pour pousser les autres */
+    flex: 1;
 }
 
-/* 2. Liens (Style Navbar) */
+
 .footer-links {
     display: flex;
-    gap: 30px; /* Espace aéré entre les liens */
+    gap: 30px;
     flex: 2;
-    justify-content: center; /* Bien centré au milieu */
+    justify-content: center;
 }
 
 .footer-links a {
     color: var(--bg-dark);
     text-decoration: none;
     font-weight: 600;
-    text-transform: uppercase; /* Rend les liens plus "pro" */
+    text-transform: uppercase;
     font-size: 0.9rem;
     position: relative;
 }
 
-/* Petit effet souligné moderne au survol */
 .footer-links a::after {
     content: '';
     position: absolute;
@@ -628,34 +635,31 @@ button:hover {
     width: 100%;
 }
 
-/* 3. Réseaux */
 .social-icons-img {
     display: flex;
     gap: 15px;
     flex: 1;
-    justify-content: flex-end; /* Colle à droite */
+    justify-content: flex-end;
 }
 
 .social-icons-img a img {
-    width: 30px; /* Taille icone propre */
+    width: 30px;
     transition: transform 0.2s;
 }
 
 .social-icons-img a:hover img {
-    transform: translateY(-3px); /* Petit saut au survol */
+    transform: translateY(-3px);
 }
 
-/* --- COPYRIGHT (En bas) --- */
 .footer-copyright {
     text-align: center;
     font-size: 0.8rem;
     opacity: 0.7;
 }
 
-/* --- RESPONSIVE (Mobile) --- */
 @media (max-width: 768px) {
     .footer-nav-row {
-        flex-direction: column; /* On empile tout */
+        flex-direction: column;
         gap: 20px;
         text-align: center;
     }
@@ -665,11 +669,45 @@ button:hover {
     }
 
     .footer-links {
-        flex-direction: column; /* Liens les uns sous les autres sur mobile */
+        flex-direction: column;
         gap: 10px;
     }
 
     .social-icons-img {
-        justify-content: center; /* Centre les icônes */
+        justify-content: center;
     }
+}
+
+/* =========================================
+   11. PETIT BONUS
+   ========================================= */
+
+.embers-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0; overflow: hidden;
+}
+
+.ember {
+    position: absolute;
+    bottom: -10px;
+    width: 5px; height: 5px;
+    background: var(--bg-pink);
+    border-radius: 50%;
+    opacity: 0;
+    animation: rise 5s infinite linear;
+}
+
+.ember:nth-child(1) { left: 10%; animation-duration: 4s; animation-delay: 0s; }
+.ember:nth-child(2) { left: 30%; animation-duration: 6s; animation-delay: 1s; }
+/*.ember:nth-child(3) { left: 47%; animation-duration: 4s; animation-delay: 4s; }*/
+.ember:nth-child(4) { left: 50%; animation-duration: 5s; animation-delay: 2s; }
+.ember:nth-child(5) { left: 56%; animation-duration: 6s; animation-delay: 2.8s; }
+.ember:nth-child(6) { left: 70%; animation-duration: 7s; animation-delay: 0.5s; }
+.ember:nth-child(7) { left: 90%; animation-duration: 4.5s; animation-delay: 3s; }
+
+@keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
 }
