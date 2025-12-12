@@ -1,77 +1,93 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- 1. PARALLAXE OPTIMISÉ ---
     const textElement = document.getElementById('parallax-text');
-    window.addEventListener('scroll', () => {
-        let scrollPosition = window.scrollY;
-        if(textElement) {
-            textElement.style.transform = `translateY(${scrollPosition * 0.4}px)`;
-            textElement.style.opacity = 1 - (scrollPosition / 700);
-        }
-    });
+    
+    if (textElement) {
+        // On ne fait le calcul que quand l'écran est prêt à afficher une image
+        let ticking = false;
 
-    const navLinks = document.querySelectorAll('.bubble-nav a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            navLinks.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-
-
-
-    // 3. ANIMATION D'APPARITION DES CARTES (Scroll Reveal)
-    const observerOptions = {
-        threshold: 0.1 // L'animation se lance quand 10% de l'élément est visible
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // On arrête d'observer une fois animé
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollPosition = window.scrollY;
+                    // On limite le calcul si on est trop bas dans la page pour rien
+                    if (scrollPosition < 800) { 
+                        textElement.style.transform = `translateY(${scrollPosition * 0.4}px)`;
+                        textElement.style.opacity = 1 - (scrollPosition / 700);
+                    }
+                    ticking = false;
+                });
+                ticking = true;
             }
         });
-    }, observerOptions);
+    }
 
-    // On ajoute la classe CSS 'hidden' via JS pour que ça reste visible si JS est désactivé
-    const cards = document.querySelectorAll('.rule-card');
-    cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(50px)';
-        card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`; // Délai progressif
-        observer.observe(card);
-    });
-
-    // Petite triche CSS via JS pour l'état visible
-    // On injecte une classe ou on modifie le style direct quand c'est visible
-    document.addEventListener('scroll', () => {
-        // Cette partie est gérée par l'observer au-dessus,
-        // mais on doit définir ce que fait "visible"
-    });
-});
-
-    // Ajout de la logique de classe "visible" directement dans l'observer
-    // Modification du prototype de l'observer ci-dessus :
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+    /* =========================================
+       2. NAVIGATION ACTIVE (BULLES)
+       ========================================= */
+    const navLinks = document.querySelectorAll('.bubble-nav a');
+    
+    // Fonction utilitaire pour gérer la boucle (compatible vieux navigateurs)
+    function handleNavClick() {
+        // Enlève 'active' sur tous
+        for (let i = 0; i < navLinks.length; i++) {
+            navLinks[i].classList.remove('active');
         }
-    });
-});
+        // Ajoute 'active' sur celui cliqué
+        this.classList.add('active');
+    }
 
-const cardsToReveal = document.querySelectorAll('.rule-card');
-cardsToReveal.forEach(card => revealObserver.observe(card));
+    for (let i = 0; i < navLinks.length; i++) {
+        navLinks[i].addEventListener('click', handleNavClick);
+    }
 
-// On ajoute les nouvelles cartes à l'animation d'apparition
-const moreCards = document.querySelectorAll('.news-card, .clan-card');
-moreCards.forEach((card, index) => {
-    // Style initial (caché)
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = 'all 0.6s ease';
+    /* =========================================
+       3. ANIMATION D'APPARITION (SCROLL REVEAL)
+       ========================================= */
+    
+    // On sélectionne TOUS les éléments à animer
+    const allAnimatedCards = document.querySelectorAll('.rule-card, .news-card, .clan-card');
 
-    // On observe
-    revealObserver.observe(card);
+    // VÉRIFICATION DE COMPATIBILITÉ
+    // Si le navigateur supporte IntersectionObserver (Moderne)
+    if ('IntersectionObserver' in window) {
+        
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // L'élément est visible
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    // On arrête d'observer cet élément pour économiser des ressources
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1 // 10% visible
+        });
+
+        // On initialise l'état caché et on lance l'observation
+        allAnimatedCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            // Délai progressif un peu random pour un effet naturel
+            card.style.transition = `opacity 0.6s ease, transform 0.6s ease`;
+            
+            // Si c'est une 'rule-card', on garde ton délai décalé sympa
+            if(card.classList.contains('rule-card')) {
+                card.style.transitionDelay = `${index * 0.1}s`; 
+            }
+            
+            revealObserver.observe(card);
+        });
+
+    } else {
+        // FALLBACK : Si le navigateur est trop vieux (IE, vieux Safari)
+        // On affiche tout direct pour ne pas casser le site
+        for (let i = 0; i < allAnimatedCards.length; i++) {
+            allAnimatedCards[i].style.opacity = '1';
+            allAnimatedCards[i].style.transform = 'translateY(0)';
+        }
+    }
 });

@@ -172,18 +172,21 @@ body, html {
 /* =========================================
    5. SECTION DU BAS (TRIANGLE)
    ========================================= */
+
 .bottom-section {
     position: relative;
     background-color: var(--bg-pink);
     color: var(--bg-dark);
     min-height: 100vh;
-    margin-top: -150px;
+    margin-top: -151px;
     z-index: 2;
     clip-path: polygon(0 150px, 50% 0, 100% 150px, 100% 100%, 0 100%);
     padding: 180px 20px 250px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transform: translateZ(0);
+    will-change: clip-path;
 }
 
 .section-title {
@@ -260,7 +263,17 @@ body, html {
     .bento-grid { grid-template-columns: 1fr; }
     .large, .medium, .small { grid-column: span 1; }
     .split-anim-title { font-size: 2.5rem; }
-    .bottom-section { clip-path: polygon(0 80px, 50% 0, 100% 80px, 100% 100%, 0 100%); margin-top: -100px; }
+    
+    /* CORRECTION DU BUG ORANGE ICI */
+    .bottom-section { 
+        /* On aligne la découpe (100px) avec la margin (-100px) */
+        clip-path: polygon(0 100px, 50% 0, 100% 100px, 100% 100%, 0 100%); 
+        margin-top: -100px; 
+        
+        /* Ajustement du padding pour que le texte ne soit pas trop bas sur mobile */
+        padding-top: 130px; 
+    }
+
     .subtitle-anim {
         font-size: 1.2rem;
         letter-spacing: 5px;
