@@ -25,15 +25,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* =========================================
-       2. NAVIGATION ACTIVE (BULLES)
+       2. NAVIGATION ACTIVE ET CLICK FIX
        ========================================= */
     const navLinks = document.querySelectorAll('.bubble-nav a');
     
-    function handleNavClick() {
+    function handleNavClick(e) {
+        e.preventDefault();
+
         for (let i = 0; i < navLinks.length; i++) {
             navLinks[i].classList.remove('active');
         }
         this.classList.add('active');
+        const targetId = this.getAttribute('href');
+
+        if (targetId === '#') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        history.pushState(null, null, targetId);
     }
 
     for (let i = 0; i < navLinks.length; i++) {
