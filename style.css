@@ -69,6 +69,55 @@ body, html {
 }
 
 /* =========================================
+   2B. NAV BARRE DROITE (BULLE FLOTTANTE)
+   ========================================= */
+.bubble-nav-right {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    background-color: rgba(229, 212, 200, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 10px 30px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+.bubble-nav-right ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+.bubble-nav-right a {
+    text-decoration: none;
+    color: var(--bg-dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.bubble-nav-right a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: var(--bg-pink);
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.bubble-nav-right a:hover::after,
+.bubble-nav-right a.active::after {
+    width: 100%;
+}
+
+/* =========================================
    3. SECTION DU HAUT (TOP SECTION)
    ========================================= */
 .top-section {

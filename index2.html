@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LFDB | Le But de l'Aventure</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .lore-section {
+            min-height: 100vh;
+            padding: 120px 2rem 4rem;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #2a3740 100%);
+            position: relative;
+        }
+
+        .lore-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .lore-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem;
+            background: rgba(229, 212, 200, 0.05);
+            border-radius: 20px;
+            border: 2px solid var(--bg-pink);
+        }
+
+        .lore-hero h1 {
+            font-size: 3.5rem;
+            color: var(--bg-pink);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(248, 135, 79, 0.5);
+        }
+
+        .lore-hero p {
+            font-size: 1.3rem;
+            color: var(--text-beige);
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .objective-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--bg-pink);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(248, 135, 79, 0.3);
+        }
+
+        .objective-card h2 {
+            color: var(--bg-pink);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .objective-card .icon {
+            font-size: 2.5rem;
+        }
+
+        .objective-card p {
+            color: var(--text-beige);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .points-system {
+            background: linear-gradient(135deg, rgba(248, 135, 79, 0.1) 0%, rgba(54, 67, 74, 0.9) 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        .points-system h2 {
+            color: var(--bg-pink);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .point-item {
+            background: rgba(229, 212, 200, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(248, 135, 79, 0.3);
+        }
+
+        .point-item h3 {
+            color: var(--bg-pink);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .point-value {
+            display: inline-block;
+            background: var(--bg-pink);
+            color: var(--bg-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .point-item p {
+            color: var(--text-beige);
+            line-height: 1.6;
+        }
+
+        .lore-story {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 2px solid rgba(248, 135, 79, 0.2);
+        }
+
+        .lore-story h2 {
+            color: var(--bg-pink);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .lore-story p {
+            color: var(--text-beige);
+            font-size: 1.15rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .lore-story .quote {
+            font-style: italic;
+            border-left: 4px solid var(--bg-pink);
+            padding-left: 2rem;
+            margin: 2rem 0;
+            color: rgba(229, 212, 200, 0.9);
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--bg-pink);
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(248, 135, 79, 0.5);
+        }
+
+        .warning-box {
+            background: rgba(255, 100, 100, 0.1);
+            border: 2px solid #ff6464;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .warning-box h3 {
+            color: #ff6464;
+            margin-bottom: 1rem;
+        }
+
+        .warning-box p {
+            color: var(--text-beige);
+        }
+
+        ul.objectives-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul.objectives-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(248, 135, 79, 0.2);
+            color: var(--text-beige);
+            font-size: 1.1rem;
+        }
+
+        ul.objectives-list li:last-child {
+            border-bottom: none;
+        }
+
+        ul.objectives-list li::before {
+            content: "⚔️";
+            margin-right: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="bubble-nav">
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#rules">Règles</a></li>
+        <li><a href="index.html#news">Actu</a></li>
+        <li><a href="index.html#clans">Clans</a></li>
+        <li><a href="index.html#map">Carte</a></li>
+    </ul>
+</nav>
+
+<nav class="bubble-nav-right">
+    <ul>
+        <li><a href="index2.html" class="active">But</a></li>
+    </ul>
+</nav>
+
+<section class="lore-section">
+    <div class="lore-container">
+        
+        <div class="lore-hero">
+            <h1>🎯 Le But de l'Aventure</h1>
+            <p>Dans un monde où chaque cœur compte, où chaque alliance peut changer le cours de l'histoire, votre objectif est simple mais impitoyable : </p>
+                <p><strong>Survivre   Bâtir   Dominer</strong></p>
+        </div>
+
+        <!-- OBJECTIF PRINCIPAL -->
+        <div class="objective-card">
+            <h2><span class="icon">👑</span> Objectif Principal : L'évolution</h2>
+            <p>Votre clan doit accumuler le maximum de <strong>points</strong> avant la fin de la saison. Le clan avec le plus de points sera couronné <strong>Champion de la Saison 2</strong> et gravera son nom dans l'histoire de LFDB.</p>
+            
+            <ul class="objectives-list">
+                <li>Conquérir des territoires</li>
+                <li>Éliminer vos adversaires et voler leurs cœurs</li>
+                <li>Construire une capitale prospère</li>
+                <li>Établir des alliances ou les trahir au bon moment</li>
+                <li>Enrichire son pays</li>
+            </ul>
+        </div>
+
+        <!-- SYSTÈME DE POINTS -->
+        <div class="points-system">
+            <h2>📊 Système de Points de Victoire</h2>
+            <p style="text-align: center; color: var(--text-beige); font-size: 1.1rem; margin-bottom: 2rem;">
+                Chaque action compte. Voici comment votre clan peut gagner (ou perdre) des points :
+            </p>
+
+            <div class="points-grid">
+
+                <div class="point-item">
+                    <h3>🏰 Capitale Développée <span class="point-value">+10 pts</span></h3>
+                    <p>Avoir une capitale fonctionnelle avec Minecolonies (tout les 3 bâtiments actifs) rapporte 10 points.</p>
+                </div>
+
+                <div class="point-item">
+                    <h3>🗺️ Contrôle Territorial <span class="point-value">+2 pts</span></h3>
+                    <p>Chaque territoire de 16x16 blocks (1 chunk) entièrement contrôlé et protégé rapporte 2 points.</p>
+                </div>
+
+                <div class="point-item">
+                    <h3>💎 Richesse <span class="point-value">+2 pts</span></h3>
+                    <p>Chaque 1000€ sur le compte du pays rapport 2 points.</p>
+                </div>
+
+                <div class="point-item">
+                    <h3>⚔️ Victoire de Guerre <span class="point-value">+15 pts</span></h3>
+                    <p>Gagner une guerre déclarée officiellement rapporte 15 points. La défaite coûte -10 points.</p>
+                </div>
+
+                <div class="point-item">
+                    <h3>❤️ Population <span class="point-value">+1 pt</span></h3>
+                    <p>Chaque joueur actif et de pnj de Minecolonie dans votre pays rapporte 1 point.</p>
+                </div>
+
+                <div class="point-item">
+                    <h3>🌟 Beauté <span class="point-value">+50 pt</span></h3>
+                    <p>Chaque pays sera noté avec un classement finale, plus le pays est développé, propre, protégé et beau plus il montera dans le classement. Rapporte jusqu'a 50 points.</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Pénalités</h3>
+                <p><strong>Mort définitif d'un membre :</strong> -1 point par mort</p>
+                <p><strong>Trahison d'alliance :</strong> -5 points si vous rompez une alliance sans déclaration officielle</p>
+            </div>
+        </div>
+
+        <!-- LORE ET HISTOIRE -->
+        <div class="lore-story">
+            <h2>📜 Le Lore</h2>
+
+        <!--
+            <p>
+                Il y a des générations, le monde était unifié sous une seule bannière. Mais la soif de pouvoir et les querelles territoriales ont fracturé cette paix fragile. Les anciens dirigeants ont disparu, ne laissant derrière eux que des ruines et des légendes.
+            </p>
+
+            <p class="quote">
+                "Dans les cendres de l'ancien monde, seuls les plus forts survivront. Les cœurs ne sont pas seulement des symboles de vie, mais des monnaies de pouvoir. Celui qui contrôle les cœurs contrôle le destin."
+                <br>— Inscription sur les Pierres Anciennes
+            </p>
+
+            <p>
+                Aujourd'hui, la <strong>Saison 2</strong> marque le retour des clans. Chaque territoire est une forteresse potentielle, chaque alliance une trahison en devenir. Le système Life-Steal n'est pas une malédiction, mais une loi naturelle de ce monde : <em>prendre pour survivre</em>.
+            </p>
+
+            <p>
+                Les terres sont vastes, mais les ressources limitées. Des biomes mystérieux renferment des trésors inestimables, mais aussi des dangers mortels. Les Minecolonies permettent de bâtir des civilisations, mais attirent également la convoitise.
+            </p>
+
+            <p>
+                Votre clan n'est pas qu'un groupe de joueurs. C'est une <strong>dynastie en devenir</strong>. Chaque décision, chaque bataille, chaque alliance forgera votre héritage. L'histoire est écrite par les vainqueurs, et vous avez l'opportunité de devenir une légende.
+            </p>
+
+            <p class="quote">
+                "Les faibles cherchent la paix. Les forts créent l'ordre. Les légendes façonnent l'histoire."
+            </p>
+        -->
+            <p>bla bla bla</p>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <h3 style="color: var(--bg-pink); font-size: 2rem; margin-bottom: 1rem;">
+                    🔥 La Question Reste Entière 🔥
+                </h3>
+                <p style="font-size: 1.3rem; color: var(--text-beige);">
+                    Serez-vous le clan qui domine par la force, la diplomatie, ou la richesse ?<br>
+                    L'aventure commence maintenant. Votre destin vous attend.
+                </p>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-btn">← Retour à l'Accueil</a>
+        </div>
+
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-nav-row">
+            <div class="footer-logo">LFDB | S2</div>
+            <nav class="footer-links">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#rules">Règles</a>
+                <a href="index.html#news">Actualité</a>
+                <a href="index.html#clans">Clans</a>
+                <a href="index.html#map">Carte</a>
+            </nav>
+            <div class="social-icons-img">
+                <a href="https://discord.gg/KXUSrBkHTu" target="_blank"><img src="images/discord.png" alt="Discord"></a>
+                <a href="https://www.youtube.com/@LFDB93" target="_blank"><img src="images/youtube.jpg" alt="YouTube"></a>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            &copy; 2026 Aymeric Site. Tous droits réservés.
+        </div>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smooth: true
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
