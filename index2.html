@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LFDB | Le But de l'Aventure</title>
+    <title>AEON | Le But de l'Aventure</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .lore-section {
@@ -214,6 +214,102 @@
             content: "⚔️";
             margin-right: 1rem;
         }
+
+        /* === NOUVELLES SECTIONS SÉPARÉES === */
+
+        .detailed-rules-section {
+            min-height: auto;
+            padding: 100px 2rem;
+            position: relative;
+        }
+
+        .detailed-rules-section {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #2a3740 100%);
+            padding-bottom: 50px;
+        }
+
+        /* === STYLES POUR LA SECTION RÈGLES DÉTAILLÉES === */
+        .rules-detailed-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .rule-detailed-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            border-left: 5px solid var(--bg-pink);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .rule-detailed-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(248, 135, 79, 0.3);
+        }
+
+        .rule-detailed-card .rule-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(248, 135, 79, 0.2);
+        }
+
+        .rule-detailed-card .rule-header .icon {
+            font-size: 3rem;
+        }
+
+        .rule-detailed-card .rule-header h3 {
+            color: var(--bg-pink);
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .rule-detailed-card .rule-content {
+            color: var(--text-beige);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .rule-detailed-card .rule-content p {
+            margin-bottom: 1rem;
+        }
+
+        .rule-detailed-card .rule-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .rule-detailed-card .rule-content ul li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .rule-detailed-card .rule-content ul li::before {
+            content: "•";
+            color: var(--bg-pink);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: 0.3rem;
+        }
+
+        .rule-detailed-card .rule-content strong {
+            color: var(--bg-pink);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-beige);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
@@ -236,18 +332,18 @@
 
 <section class="lore-section">
     <div class="lore-container">
-        
+
         <div class="lore-hero">
             <h1>🎯 Le But de l'Aventure</h1>
             <p>Dans un monde où chaque cœur compte, où chaque alliance peut changer le cours de l'histoire, votre objectif est simple mais impitoyable : </p>
-                <p><strong>Survivre   Bâtir   Dominer</strong></p>
+            <p><strong>Survivre   Bâtir   Dominer</strong></p>
         </div>
 
         <!-- OBJECTIF PRINCIPAL -->
         <div class="objective-card">
             <h2><span class="icon">👑</span> Objectif Principal : L'évolution</h2>
-            <p>Votre clan doit accumuler le maximum de <strong>points</strong> avant la fin de la saison. Le clan avec le plus de points sera couronné <strong>Champion de la Saison 2</strong> et gravera son nom dans l'histoire de LFDB.</p>
-            
+            <p>Votre clan doit accumuler le maximum de <strong>points</strong> avant la fin de la saison. Le clan avec le plus de points sera couronné <strong>Champion de la Saison 1</strong> et gravera son nom dans l'histoire de AEON.</p>
+
             <ul class="objectives-list">
                 <li>Conquérir des territoires</li>
                 <li>Éliminer vos adversaires et voler leurs cœurs</li>
@@ -308,32 +404,32 @@
         <div class="lore-story">
             <h2>📜 Le Lore</h2>
 
-        <!--
-            <p>
-                Il y a des générations, le monde était unifié sous une seule bannière. Mais la soif de pouvoir et les querelles territoriales ont fracturé cette paix fragile. Les anciens dirigeants ont disparu, ne laissant derrière eux que des ruines et des légendes.
-            </p>
+            <!--
+                <p>
+                    Il y a des générations, le monde était unifié sous une seule bannière. Mais la soif de pouvoir et les querelles territoriales ont fracturé cette paix fragile. Les anciens dirigeants ont disparu, ne laissant derrière eux que des ruines et des légendes.
+                </p>
 
-            <p class="quote">
-                "Dans les cendres de l'ancien monde, seuls les plus forts survivront. Les cœurs ne sont pas seulement des symboles de vie, mais des monnaies de pouvoir. Celui qui contrôle les cœurs contrôle le destin."
-                <br>— Inscription sur les Pierres Anciennes
-            </p>
+                <p class="quote">
+                    "Dans les cendres de l'ancien monde, seuls les plus forts survivront. Les cœurs ne sont pas seulement des symboles de vie, mais des monnaies de pouvoir. Celui qui contrôle les cœurs contrôle le destin."
+                    <br>— Inscription sur les Pierres Anciennes
+                </p>
 
-            <p>
-                Aujourd'hui, la <strong>Saison 2</strong> marque le retour des clans. Chaque territoire est une forteresse potentielle, chaque alliance une trahison en devenir. Le système Life-Steal n'est pas une malédiction, mais une loi naturelle de ce monde : <em>prendre pour survivre</em>.
-            </p>
+                <p>
+                    Aujourd'hui, la <strong>Saison 2</strong> marque le retour des clans. Chaque territoire est une forteresse potentielle, chaque alliance une trahison en devenir. Le système Life-Steal n'est pas une malédiction, mais une loi naturelle de ce monde : <em>prendre pour survivre</em>.
+                </p>
 
-            <p>
-                Les terres sont vastes, mais les ressources limitées. Des biomes mystérieux renferment des trésors inestimables, mais aussi des dangers mortels. Les Minecolonies permettent de bâtir des civilisations, mais attirent également la convoitise.
-            </p>
+                <p>
+                    Les terres sont vastes, mais les ressources limitées. Des biomes mystérieux renferment des trésors inestimables, mais aussi des dangers mortels. Les Minecolonies permettent de bâtir des civilisations, mais attirent également la convoitise.
+                </p>
 
-            <p>
-                Votre clan n'est pas qu'un groupe de joueurs. C'est une <strong>dynastie en devenir</strong>. Chaque décision, chaque bataille, chaque alliance forgera votre héritage. L'histoire est écrite par les vainqueurs, et vous avez l'opportunité de devenir une légende.
-            </p>
+                <p>
+                    Votre clan n'est pas qu'un groupe de joueurs. C'est une <strong>dynastie en devenir</strong>. Chaque décision, chaque bataille, chaque alliance forgera votre héritage. L'histoire est écrite par les vainqueurs, et vous avez l'opportunité de devenir une légende.
+                </p>
 
-            <p class="quote">
-                "Les faibles cherchent la paix. Les forts créent l'ordre. Les légendes façonnent l'histoire."
-            </p>
-        -->
+                <p class="quote">
+                    "Les faibles cherchent la paix. Les forts créent l'ordre. Les légendes façonnent l'histoire."
+                </p>
+            -->
             <p>bla bla bla</p>
 
             <div style="text-align: center; margin-top: 3rem;">
@@ -346,18 +442,35 @@
                 </p>
             </div>
         </div>
+    </div>
 
-        <div style="text-align: center;">
-            <a href="index.html" class="back-btn">← Retour à l'Accueil</a>
+
+    <div class="content-wrapper">
+        <h2 class="section-title">📋 Règles Détaillées</h2>
+        <p class="section-subtitle">Les règles complètes à connaître pour cette saison.</p>
+
+        <div class="rules-detailed-grid">
+            <!-- Tu peux maintenant ajouter tes règles détaillées ici -->
+            <div class="rule-detailed-card">
+                <div class="rule-header">
+                    <div class="icon">📝</div>
+                    <h3>Titre de la règle</h3>
+                </div>
+                <div class="rule-content">
+                    <p>Explique-moi les règles que tu veux ajouter ici...</p>
+                </div>
+            </div>
         </div>
-
+    </div>
+    <div style="text-align: center;">
+        <a href="index.html" class="back-btn">← Retour à l'Accueil</a>
     </div>
 </section>
 
 <footer class="site-footer">
     <div class="footer-container">
         <div class="footer-nav-row">
-            <div class="footer-logo">LFDB | S2</div>
+            <div class="footer-logo">AEON | GENESIS</div>
             <nav class="footer-links">
                 <a href="index.html">Accueil</a>
                 <a href="index.html#rules">Règles</a>
@@ -371,7 +484,7 @@
             </div>
         </div>
         <div class="footer-copyright">
-            &copy; 2026 Aymeric Site. Tous droits réservés.
+            &copy; 2026 AEON Site. Tous droits réservés.
         </div>
     </div>
 </footer>
